@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { Command } from "commander";
-import { loadConfig } from "../core/config/index.js";
+import { loadConfig, ensureApiKey } from "../core/config/index.js";
 import { runCommand } from "../app/workflows/index.js";
 import { documentCommand } from "./commands/document.js";
 import { decisionCommand } from "./commands/decision.js";
@@ -21,6 +21,7 @@ program
   .option("-n, --note <note>", "Add a note about what you worked on")
   .action(async (options) => {
     try {
+      await ensureApiKey();
       const config = loadConfig();
       const filepath = await runCommand("document", config, options.note);
       console.log(`\u2713 Session log created`);

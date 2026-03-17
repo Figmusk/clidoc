@@ -1,10 +1,10 @@
 {
   "name": "clidoc",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "The designer's git commit — turn terminal AI sessions into structured documentation",
   "type": "module",
   "bin": {
-    "clidoc": "./dist/cli/index.js"
+    "clidoc": "dist/cli/index.js"
   },
   "files": [
     "dist"
@@ -15,11 +15,18 @@
     "dev": "tsx src/cli/index.ts",
     "start": "node dist/cli/index.js"
   },
-  "keywords": ["cli", "documentation", "ai", "developer-tools", "terminal", "session-log"],
+  "keywords": [
+    "cli",
+    "documentation",
+    "ai",
+    "developer-tools",
+    "terminal",
+    "session-log"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/Figmusk/clidoc.git"
   },
   "engines": {
     "node": ">=18"

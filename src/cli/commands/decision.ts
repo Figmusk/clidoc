@@ -1,5 +1,5 @@
 import { Command } from "commander";
-import { loadConfig } from "../../core/config/index.js";
+import { loadConfig, ensureApiKey } from "../../core/config/index.js";
 import { runCommand } from "../../app/workflows/index.js";
 
 export const decisionCommand = new Command("decision")
@@ -7,6 +7,7 @@ export const decisionCommand = new Command("decision")
   .option("-n, --note <note>", "Describe the decision")
   .action(async (options) => {
     try {
+      await ensureApiKey();
       const config = loadConfig();
       const filepath = await runCommand("decision", config, options.note);
       console.log(`\u2713 Decision recorded`);

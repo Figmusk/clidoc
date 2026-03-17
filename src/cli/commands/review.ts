@@ -1,5 +1,5 @@
 import { Command } from "commander";
-import { loadConfig } from "../../core/config/index.js";
+import { loadConfig, ensureApiKey } from "../../core/config/index.js";
 import { runCommand } from "../../app/workflows/index.js";
 
 export const reviewCommand = new Command("review")
@@ -7,6 +7,7 @@ export const reviewCommand = new Command("review")
   .option("-n, --note <note>", "Scope the review")
   .action(async (options) => {
     try {
+      await ensureApiKey();
       const config = loadConfig();
       const filepath = await runCommand("review", config, options.note);
       console.log(`\u2713 Review summary created`);

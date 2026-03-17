@@ -1,5 +1,5 @@
 import { Command } from "commander";
-import { loadConfig } from "../../core/config/index.js";
+import { loadConfig, ensureApiKey } from "../../core/config/index.js";
 import { runCommand } from "../../app/workflows/index.js";
 
 export const updateCommand = new Command("update")
@@ -7,6 +7,7 @@ export const updateCommand = new Command("update")
   .option("-n, --note <note>", "Add a progress note")
   .action(async (options) => {
     try {
+      await ensureApiKey();
       const config = loadConfig();
       const filepath = await runCommand("update", config, options.note);
       console.log(`\u2713 Update saved`);
